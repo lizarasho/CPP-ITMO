@@ -89,16 +89,9 @@ void solver::solve(board const &start)
             int score = g[current] + v.hamming() + v.manhattan();
             if (used.count(v) && score >= g[v])
                 continue;
-
-            if (parent.count(v))
-                parent[v] = current;
-            else
-                parent.insert({v, current});
-
-            if (g.count(v))
-                g[v] = score;
-            else
-                g.insert({v, score});
+            
+            parent[v] = current;
+            g[v] = score;
 
             if (!used.count(v))
                 Q.push(v);
